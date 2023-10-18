@@ -1,6 +1,7 @@
 package org.sopt.www.seminar.controller;
 
 import org.sopt.www.seminar.dto.HealthCheckResponse;
+import org.sopt.www.seminar.dto.MyResponse;
 import org.sopt.www.seminar.sample.Person;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,9 +22,14 @@ public class HealthCheckController {
     }
 
     @GetMapping("/v2")
+    public MyResponse healthCheckV2() {
+        return new MyResponse(200, "ok", true);
+    }
+    /* ResponseEntity 를 활용한 기존 코드
     public ResponseEntity<String> healthCheckV2() {
         return ResponseEntity.ok("OK");
     }
+     */
 
     @GetMapping("/v3")
     public String healthCheckV3() {
@@ -36,14 +42,27 @@ public class HealthCheckController {
     }
 
     @GetMapping("/v4")
+    public MyResponse healthCheckv4() {
+        Map<String, String> response = new HashMap<>();
+        response.put("status", "ok");
+        return new MyResponse(200, response.get("status"), true);
+    }
+    /* ResponseEntity 를 활용한 기존 코드
     public ResponseEntity<Map<String, String>> healthCheckV4() {
         Map<String, String> response = new HashMap<>();
         response.put("status", "ok");
         return ResponseEntity.ok(response);
     }
+     */
 
     @GetMapping("/v5")
+    public MyResponse healthCheckV5() {
+        HealthCheckResponse response = new HealthCheckResponse(); // "status" : "ok"
+        return new MyResponse(200, response.getStatus(), true);
+    }
+    /* ResponseEntity 를 활용한 기존 코드
     public ResponseEntity<HealthCheckResponse> healthCheckV5() {
         return ResponseEntity.ok(new HealthCheckResponse());
     }
+     */
 }
