@@ -1,6 +1,7 @@
 package com.sopt.demo.repository;
 
 import com.sopt.demo.domain.Member;
+import com.sopt.demo.exception.MemberNotExistException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -8,7 +9,7 @@ public interface MemberJpaRepository extends JpaRepository<Member, Long> {
 
     default Member findByIdOrThrow(Long memberId) {
         return findById(memberId)
-                .orElseThrow(()-> new EntityNotFoundException("해당하는 회원이 없습니다"));
+                .orElseThrow(()-> new MemberNotExistException(memberId));
     }
 
 }
