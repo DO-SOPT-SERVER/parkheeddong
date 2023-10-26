@@ -3,11 +3,12 @@ package com.sopt.demo.domain;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Embeddable
-@Getter
+@Data
 @NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
 public class SOPT {
     private int generation;

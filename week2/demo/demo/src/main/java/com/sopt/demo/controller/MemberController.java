@@ -1,6 +1,7 @@
 package com.sopt.demo.controller;
 
 import com.sopt.demo.dto.request.MemberCreateRequest;
+import com.sopt.demo.dto.request.MemberPatchRequest;
 import com.sopt.demo.dto.response.MemberGetResponse;
 import com.sopt.demo.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -84,5 +85,22 @@ public class MemberController {
     [6] .build()
     - 실제 응답을 생성하고 반환한다.
      */
+
+
+    @PatchMapping("/{memberId}")
+    public ResponseEntity<Void> updatePatchMember(@PathVariable Long memberId, @RequestBody MemberPatchRequest request) {
+        memberService.patchMember(memberId, request);
+        return ResponseEntity.noContent().build();
+    }
+    /*
+    ResponseEntity.noContent().build()
+    -> http 응답코드가 204 No Content 인 응답을 생성한다
+    -> 요청이 성공적으로 처리되었으나 클라에 반환 데이터가 없는 경우 사용
+     */
+
+
+
+    // 삭제 api
+
 }
 

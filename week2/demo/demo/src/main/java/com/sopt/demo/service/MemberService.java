@@ -2,14 +2,15 @@ package com.sopt.demo.service;
 
 import com.sopt.demo.domain.Member;
 import com.sopt.demo.dto.request.MemberCreateRequest;
+import com.sopt.demo.dto.request.MemberPatchRequest;
 import com.sopt.demo.dto.response.MemberGetResponse;
 import com.sopt.demo.repository.MemberJpaRepository;
 import jakarta.persistence.EntityNotFoundException;
+import java.util.Objects;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -115,6 +116,24 @@ public class MemberService {
     [3] member.getId().toString();
     - 멤버의 고유한 id를 문자열 형식으로 반환한다.
      */
+
+    // 수정 메소드
+    @Transactional
+    public void patchMember(Long memberId, MemberPatchRequest request) {
+        Member member = memberJpaRepository.findByIdOrThrow(memberId);
+
+        if (request.nickname() != null) {
+            member.updateNickName(request.nickname());
+        }
+        if (Objects.nonNull(request.age())) {
+            member.updateAge(request.age());
+        }
+        if (request.sopt() != null) {
+            member.updateSopt(request.sopt());
+        }
+
+        memberJpaRepository.save(member);
+    }
 
 
 }
