@@ -106,6 +106,12 @@ public class MemberController {
         return ResponseEntity.noContent().build();
     }
 
+    // 삭제 api
+    @DeleteMapping("/{memberId}")
+    public ResponseEntity<Void> deleteMember(@PathVariable Long memberId) {
+        memberService.deleteMember(memberId);
+        return ResponseEntity.noContent().build();
+    }
 
 }
 
