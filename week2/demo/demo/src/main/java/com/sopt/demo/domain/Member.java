@@ -29,13 +29,15 @@ public class Member {
         this.age = age;
         this.sopt = sopt;
     }
-    /*
-    데이터베이스에서 사용되는 id는 레코드가 데이터베이스에 저장될 때 자동 생성된다
-    대부분 데이터베이스관리시스템은 레코드 추가 시 자체적으로 유일한 ID(대개 정수)를 할당하여 관리한다.
-    -> @GeneratedValue(strategy = GenerationType.IDENTITY) 어노테이션을 사용하여
-    데이터베이스에서 자동 증가로 ID 필드를 관리
-     */
+
 }
+
+/*
+데이터베이스에서 사용되는 id는 레코드가 데이터베이스에 저장될 때 자동 생성된다
+대부분 데이터베이스관리시스템은 레코드 추가 시 자체적으로 유일한 ID(대개 정수)를 할당하여 관리한다.
+-> @GeneratedValue(strategy = GenerationType.IDENTITY) 어노테이션을 사용하여
+데이터베이스에서 자동 증가로 ID 필드를 관리
+ */
 
 /* Annotation
  @Entity

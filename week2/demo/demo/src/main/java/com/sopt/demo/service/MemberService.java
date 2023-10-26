@@ -22,8 +22,6 @@ public class MemberService {
 
     public MemberGetResponse getByIdV1(Long memberId) {
         Member member = memberJpaRepository.findById(memberId).get();
-//        MemberGetResponse response = MemberGetResponse.of(member);
-//        return response;
         return new MemberGetResponse(
                 member.getName(),
                 member.getNickname(),
@@ -31,6 +29,7 @@ public class MemberService {
                 member.getSopt()
         );
     }
+
     /*
     memberId를 입력받아 특정 회원의 프로필 정보를 조회하는 메서드
     - memberJpaRepository.findById로 회원을 찾고,
@@ -49,9 +48,6 @@ public class MemberService {
                 member.getSopt()
         ))
                 .orElseThrow( () -> new EntityNotFoundException("해당하는 회원이 없습니다") );
-
-//        return MemberGetResponse.of(memberJpaRepository.findById(id)
-//                .orElseThrow( () -> new EntityNotFoundException("해당하는 회원이 없습니다")));
     }
 
     /*
@@ -61,7 +57,6 @@ public class MemberService {
      */
 
     public MemberGetResponse getById3(Long id) {
-//        return MemberGetResponse.of(memberJpaRepository.findByIdOrThrow(id));
         Member member = memberJpaRepository.findByIdOrThrow(id);
         return new MemberGetResponse(
                 member.getName(),
