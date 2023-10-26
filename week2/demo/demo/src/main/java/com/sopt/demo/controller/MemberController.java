@@ -2,6 +2,7 @@ package com.sopt.demo.controller;
 
 import com.sopt.demo.dto.request.MemberCreateRequest;
 import com.sopt.demo.dto.request.MemberPatchRequest;
+import com.sopt.demo.dto.request.MemberPutRequest;
 import com.sopt.demo.dto.response.MemberGetResponse;
 import com.sopt.demo.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -99,8 +100,12 @@ public class MemberController {
      */
 
 
+    @PutMapping("/{memberId}")
+    public ResponseEntity<Void> updatePutMember(@PathVariable Long memberId, @RequestBody MemberPutRequest request) {
+        memberService.putMember(memberId, request);
+        return ResponseEntity.noContent().build();
+    }
 
-    // 삭제 api
 
 }
 

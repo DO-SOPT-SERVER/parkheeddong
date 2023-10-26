@@ -3,6 +3,7 @@ package com.sopt.demo.service;
 import com.sopt.demo.domain.Member;
 import com.sopt.demo.dto.request.MemberCreateRequest;
 import com.sopt.demo.dto.request.MemberPatchRequest;
+import com.sopt.demo.dto.request.MemberPutRequest;
 import com.sopt.demo.dto.response.MemberGetResponse;
 import com.sopt.demo.repository.MemberJpaRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -134,6 +135,18 @@ public class MemberService {
 
         memberJpaRepository.save(member);
     }
+
+    // put 메서드
+    @Transactional
+    public void putMember(Long memberId, MemberPutRequest request) {
+        Member member = memberJpaRepository.findByIdOrThrow(memberId);
+        member.updateNickName(request.nickname());
+        member.updateAge(request.age());
+        member.updateSopt(request.sopt());
+        memberJpaRepository.save(member);
+    }
+
+
 
 
 }
