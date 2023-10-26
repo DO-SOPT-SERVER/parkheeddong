@@ -22,8 +22,14 @@ public class MemberService {
 
     public MemberGetResponse getByIdV1(Long memberId) {
         Member member = memberJpaRepository.findById(memberId).get();
-        MemberGetResponse response = MemberGetResponse.of(member);
-        return response;
+//        MemberGetResponse response = MemberGetResponse.of(member);
+//        return response;
+        return new MemberGetResponse(
+                member.getName(),
+                member.getNickname(),
+                member.getAge(),
+                member.getSopt()
+        );
     }
     /*
     memberId를 입력받아 특정 회원의 프로필 정보를 조회하는 메서드
@@ -35,8 +41,17 @@ public class MemberService {
      */
 
     public MemberGetResponse getByIdV2(Long id) {
-        return MemberGetResponse.of(memberJpaRepository.findById(id)
-                .orElseThrow( () -> new EntityNotFoundException("해당하는 회원이 없습니다")));
+        return memberJpaRepository.findById(id)
+                .map(member -> new MemberGetResponse(
+                member.getName(),
+                member.getNickname(),
+                member.getAge(),
+                member.getSopt()
+        ))
+                .orElseThrow( () -> new EntityNotFoundException("해당하는 회원이 없습니다") );
+
+//        return MemberGetResponse.of(memberJpaRepository.findById(id)
+//                .orElseThrow( () -> new EntityNotFoundException("해당하는 회원이 없습니다")));
     }
 
     /*
@@ -46,7 +61,14 @@ public class MemberService {
      */
 
     public MemberGetResponse getById3(Long id) {
-        return MemberGetResponse.of(memberJpaRepository.findByIdOrThrow(id));
+//        return MemberGetResponse.of(memberJpaRepository.findByIdOrThrow(id));
+        Member member = memberJpaRepository.findByIdOrThrow(id);
+        return new MemberGetResponse(
+                member.getName(),
+                member.getNickname(),
+                member.getAge(),
+                member.getSopt()
+        );
     }
 
     /*
@@ -56,7 +78,12 @@ public class MemberService {
     public List<MemberGetResponse> getMembers() {
         List<MemberGetResponse> members = memberJpaRepository.findAll()
                 .stream()
-                .map(member -> MemberGetResponse.of(member))
+                .map(member -> new MemberGetResponse(
+                member.getName(),
+                member.getNickname(),
+                member.getAge(),
+                member.getSopt()
+        ))
                 .collect(Collectors.toList());
         return members;
     }
@@ -73,10 +100,10 @@ public class MemberService {
     public String create(MemberCreateRequest request) {
 
         Member member =  Member.builder()
-                .name(request.getName())
-                .nickname(request.getNickname())
-                .age(request.getAge())
-                .sopt(request.getSopt())
+                .name(request.name())
+                .nickname(request.nickname())
+                .age(request.age())
+                .sopt(request.sopt())
                 .build();
 
         memberJpaRepository.save(member);
