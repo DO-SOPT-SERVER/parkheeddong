@@ -15,10 +15,10 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequiredArgsConstructor   // 클래스의 final 필드를 초기화하는 생성자를 만들어주는 Lombok Annotaton
+@RequiredArgsConstructor
 @RequestMapping("/api/member")
 public class MemberController {
-    private final MemberService memberService; // 의존성 주입
+    private final MemberService memberService;
 
     @GetMapping("{memberId}")
     public ResponseEntity<MemberGetResponse> getMemberProfileV1(@PathVariable("memberId") Long memberId) {
@@ -106,7 +106,6 @@ public class MemberController {
         return ResponseEntity.noContent().build();
     }
 
-    // 삭제 api
     @DeleteMapping("/{memberId}")
     public ResponseEntity<Void> deleteMember(@PathVariable Long memberId) {
         memberService.deleteMember(memberId);

@@ -30,8 +30,6 @@ public class Member {
         this.sopt = sopt;
     }
 
-    // 수정 API를 위한 메소드
-
     public void updateNickName(String nickname) {
         this.nickname = nickname;
     }

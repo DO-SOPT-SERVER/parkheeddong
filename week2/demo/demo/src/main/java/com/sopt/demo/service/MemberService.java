@@ -118,7 +118,6 @@ public class MemberService {
     - 멤버의 고유한 id를 문자열 형식으로 반환한다.
      */
 
-    // 수정 메소드
     @Transactional
     public void patchMember(Long memberId, MemberPatchRequest request) {
         Member member = memberJpaRepository.findByIdOrThrow(memberId);
@@ -126,7 +125,7 @@ public class MemberService {
         if (request.nickname() != null) {
             member.updateNickName(request.nickname());
         }
-        if (Objects.nonNull(request.age())) {
+        if (Objects.nonNull(request.age())) {   // != 연산자는 int와 null을 비교 못함-> nonNull은 null이 아니면 true 반환
             member.updateAge(request.age());
         }
         if (request.sopt() != null) {
@@ -136,7 +135,6 @@ public class MemberService {
         memberJpaRepository.save(member);
     }
 
-    // put 메서드
     @Transactional
     public void putMember(Long memberId, MemberPutRequest request) {
         Member member = memberJpaRepository.findByIdOrThrow(memberId);
@@ -146,7 +144,6 @@ public class MemberService {
         memberJpaRepository.save(member);
     }
 
-    // delete 메서드
     @Transactional
     public void deleteMember(Long memberId) {
         Member member = memberJpaRepository.findByIdOrThrow(memberId);
