@@ -2,6 +2,8 @@ package com.sopt.demo.domain;
 
 import com.fasterxml.jackson.annotation.JsonTypeId;
 import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,6 +23,9 @@ public class Member {
 
     @Embedded
     private SOPT sopt;
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private final List<Post> posts = new ArrayList<>();
 
     @Builder
     public Member(String name, String nickname, int age, SOPT sopt) {
@@ -69,4 +74,11 @@ public class Member {
  (SOPT 객체는 Member 엔티티에 내장되어 있음)
  @Builder
  - 빌더패턴을 구현하기 위한 Lombok Annotation
+ */
+
+/*
+@OneToMany : 일대다 관계를 정의하는 Annotation
+- 하나의 회원 (Member)는 여러개의 게시물 (Post)를 가질 수 있다
+- mappedBy = "member" -> 양방향 관계를 정의. member는 Post 엔티티 내 필드 이름으로, 이 필드를 통해 Member와 연결됨
+- cascade = CascadeType.ALL -> 부모 엔티티에 대한 모든 변경사항 (생성, 수정, 삭제) 가 자식 엔티티에 적용됨
  */
