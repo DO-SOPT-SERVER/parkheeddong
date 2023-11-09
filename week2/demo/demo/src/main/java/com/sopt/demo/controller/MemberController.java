@@ -1,12 +1,11 @@
 package com.sopt.demo.controller;
 
-import com.sopt.demo.dto.request.MemberCreateRequest;
-import com.sopt.demo.dto.request.MemberPatchRequest;
-import com.sopt.demo.dto.request.MemberPutRequest;
-import com.sopt.demo.dto.response.MemberGetResponse;
+import com.sopt.demo.dto.request.member.MemberCreateRequest;
+import com.sopt.demo.dto.request.member.MemberPatchRequest;
+import com.sopt.demo.dto.request.member.MemberPutRequest;
+import com.sopt.demo.dto.response.member.MemberGetResponse;
 import com.sopt.demo.service.MemberService;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

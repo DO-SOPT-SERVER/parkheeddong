@@ -1,6 +1,8 @@
-package com.sopt.demo.domain;
+package com.sopt.demo.domain.post;
 
-import com.fasterxml.jackson.databind.ser.Serializers.Base;
+import com.sopt.demo.domain.BaseTimeEntity;
+import com.sopt.demo.domain.category.CategoryId;
+import com.sopt.demo.domain.member.Member;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

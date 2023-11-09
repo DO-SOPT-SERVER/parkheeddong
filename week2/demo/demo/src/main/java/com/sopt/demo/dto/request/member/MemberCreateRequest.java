@@ -1,7 +1,6 @@
-package com.sopt.demo.dto.request;
+package com.sopt.demo.dto.request.member;
 
-import com.sopt.demo.domain.SOPT;
-import lombok.Data;
+import com.sopt.demo.domain.member.SOPT;
 
 public record MemberCreateRequest(String name, String nickname, int age, SOPT sopt) {
 }

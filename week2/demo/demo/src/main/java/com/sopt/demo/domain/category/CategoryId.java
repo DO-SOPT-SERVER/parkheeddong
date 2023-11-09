@@ -1,4 +1,4 @@
-package com.sopt.demo.domain;
+package com.sopt.demo.domain.category;
 
 
 import jakarta.persistence.Embeddable;

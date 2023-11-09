@@ -1,8 +1,8 @@
 package com.sopt.demo.service;
 
-import com.sopt.demo.domain.Category;
-import com.sopt.demo.domain.Member;
-import com.sopt.demo.domain.Post;
+import com.sopt.demo.domain.category.Category;
+import com.sopt.demo.domain.member.Member;
+import com.sopt.demo.domain.post.Post;
 import com.sopt.demo.dto.request.post.PostCreateRequest;
 import com.sopt.demo.dto.request.post.PostUpdateRequest;
 import com.sopt.demo.dto.response.post.PostGetResponse;

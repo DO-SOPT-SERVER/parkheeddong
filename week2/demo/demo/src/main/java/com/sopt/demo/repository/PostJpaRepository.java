@@ -1,7 +1,7 @@
 package com.sopt.demo.repository;
 
-import com.sopt.demo.domain.Member;
-import com.sopt.demo.domain.Post;
+import com.sopt.demo.domain.member.Member;
+import com.sopt.demo.domain.post.Post;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 

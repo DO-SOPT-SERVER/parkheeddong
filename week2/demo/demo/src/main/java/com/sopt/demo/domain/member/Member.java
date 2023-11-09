@@ -1,6 +1,7 @@
-package com.sopt.demo.domain;
+package com.sopt.demo.domain.member;
 
-import com.fasterxml.jackson.annotation.JsonTypeId;
+import com.sopt.demo.domain.BaseTimeEntity;
+import com.sopt.demo.domain.post.Post;
 import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;

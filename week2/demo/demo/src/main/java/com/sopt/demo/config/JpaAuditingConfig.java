@@ -1,4 +1,4 @@
-package com.sopt.demo.common.config;
+package com.sopt.demo.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;

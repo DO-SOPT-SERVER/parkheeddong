@@ -1,7 +1,7 @@
 package com.sopt.demo.service;
 
-import com.sopt.demo.domain.Category;
-import com.sopt.demo.domain.CategoryId;
+import com.sopt.demo.domain.category.Category;
+import com.sopt.demo.domain.category.CategoryId;
 import com.sopt.demo.dto.response.category.CategoryResponse;
 import com.sopt.demo.repository.CategoryJpaRepository;
 import jakarta.persistence.EntityNotFoundException;
