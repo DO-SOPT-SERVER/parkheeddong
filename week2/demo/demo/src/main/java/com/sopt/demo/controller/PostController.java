@@ -1,10 +1,14 @@
 package com.sopt.demo.controller;
 
 import com.sopt.demo.dto.request.post.PostCreateRequest;
+import com.sopt.demo.dto.response.post.PostGetResponse;
 import com.sopt.demo.service.PostService;
 import java.net.URI;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -35,6 +39,17 @@ public class PostController {
     [4] return ResponseEntity.created(location).build()
     - 클라이언트에게 HTTP 201 Created 상태코드와 함께 새로운 리소스의 URI 응답을 보내준다
      */
+
+    @GetMapping("{postId}")
+    public ResponseEntity<PostGetResponse> getPostById(@PathVariable Long postId) {
+        return ResponseEntity.ok(postService.getById(postId));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<PostGetResponse>> getPosts(@RequestHeader(CUSTOM_AUTH_ID) Long memberId) {
+        return ResponseEntity.ok(postService.getPosts(memberId));
+    }
+
 }
 
 /*

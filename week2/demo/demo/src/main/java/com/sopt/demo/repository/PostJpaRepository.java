@@ -1,9 +1,14 @@
 package com.sopt.demo.repository;
 
+import com.sopt.demo.domain.Member;
 import com.sopt.demo.domain.Post;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PostJpaRepository extends JpaRepository<Post, Long> {
+
+    List<Post> findAllByMemberId(Long memberId);
+    List<Post> findAllByMember(Member member);
 }
 /*
  JpaRepository
