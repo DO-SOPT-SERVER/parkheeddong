@@ -40,10 +40,11 @@ public class Post extends BaseTimeEntity {
     // @ManyToOne 사용 없이, 논리적으로 관계만 맺음
 
     @Builder
-    public Post(String title, String content, Member member) {
+    public Post(String title, String content, Member member, CategoryId categoryId) {
         this.title = title;
         this.content = content;
         this.member = member;
+        this.categoryId = categoryId;
     }
 
     public void updateContent(String content) {
