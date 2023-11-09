@@ -33,6 +33,10 @@ public class Post extends BaseTimeEntity {
     @JoinColumn(name = "member_id")
     private Member member;
 
+    @Column(name = "category_id")
+    private CategoryId categoryId;
+    // @ManyToOne 사용 없이, 논리적으로 관계만 맺음
+
     @Builder
     public Post(String title, String content, Member member) {
         this.title = title;
