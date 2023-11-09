@@ -1,13 +1,16 @@
 package com.sopt.demo.controller;
 
 import com.sopt.demo.dto.request.post.PostCreateRequest;
+import com.sopt.demo.dto.request.post.PostUpdateRequest;
 import com.sopt.demo.dto.response.post.PostGetResponse;
 import com.sopt.demo.service.PostService;
 import java.net.URI;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -48,6 +51,18 @@ public class PostController {
     @GetMapping
     public ResponseEntity<List<PostGetResponse>> getPosts(@RequestHeader(CUSTOM_AUTH_ID) Long memberId) {
         return ResponseEntity.ok(postService.getPosts(memberId));
+    }
+
+    @PatchMapping("{postId}")
+    public ResponseEntity<Void> updatePost(@PathVariable Long postId, @RequestBody PostUpdateRequest request) {
+        postService.editContent(postId, request);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("{postId}")
+    public ResponseEntity<Void> deletePost(@PathVariable Long postId) {
+        postService.deleteById(postId);
+        return ResponseEntity.noContent().build();
     }
 
 }

@@ -39,6 +39,10 @@ public class Post extends BaseTimeEntity {
         this.content = content;
         this.member = member;
     }
+
+    public void updateContent(String content) {
+        this.content = content;
+    }
 }
 
 /* 게시글을 의미하는 Entity. ( 연관관계의 주인은 외래키를 가지고 있는 Post 이다 )

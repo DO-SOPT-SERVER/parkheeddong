@@ -3,6 +3,7 @@ package com.sopt.demo.service;
 import com.sopt.demo.domain.Member;
 import com.sopt.demo.domain.Post;
 import com.sopt.demo.dto.request.post.PostCreateRequest;
+import com.sopt.demo.dto.request.post.PostUpdateRequest;
 import com.sopt.demo.dto.response.post.PostGetResponse;
 import com.sopt.demo.repository.MemberJpaRepository;
 import com.sopt.demo.repository.PostJpaRepository;
@@ -52,5 +53,19 @@ public class PostService {
                 .map(post -> PostGetResponse.of(post))
                 .toList();
     }
+
+    @Transactional
+    public void editContent(Long postId, PostUpdateRequest request) {
+        Post post = postJpaRepository.findById(postId)
+                .orElseThrow(() -> new EntityNotFoundException("해당하는 게시글이 없습니다."));
+        post.updateContent(request.content());
+    }
+
+    @Transactional
+    public void deleteById(Long postId) {
+        Post post = postJpaRepository.findById(postId).orElseThrow(() -> new EntityNotFoundException("해당하는 게시글이 없습니다."));
+        postJpaRepository.delete(post);
+    }
+
 }
 
