@@ -1,10 +1,10 @@
-package com.sopt.demo.domain;
+package com.sopt.demo.domain.member;
 
+import com.sopt.demo.domain.member.Part;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Embeddable

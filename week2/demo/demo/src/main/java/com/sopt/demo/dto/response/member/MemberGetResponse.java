@@ -1,10 +1,6 @@
-package com.sopt.demo.dto.response;
+package com.sopt.demo.dto.response.member;
 
-import com.sopt.demo.domain.Member;
-import com.sopt.demo.domain.SOPT;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
+import com.sopt.demo.domain.member.SOPT;
 
 
 public record MemberGetResponse(String name, String nickname, int age, SOPT sopt) {

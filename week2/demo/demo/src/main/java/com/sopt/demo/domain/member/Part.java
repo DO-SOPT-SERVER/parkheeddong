@@ -1,4 +1,4 @@
-package com.sopt.demo.domain;
+package com.sopt.demo.domain.member;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,10 +1,10 @@
 package com.sopt.demo.service;
 
-import com.sopt.demo.domain.Member;
-import com.sopt.demo.dto.request.MemberCreateRequest;
-import com.sopt.demo.dto.request.MemberPatchRequest;
-import com.sopt.demo.dto.request.MemberPutRequest;
-import com.sopt.demo.dto.response.MemberGetResponse;
+import com.sopt.demo.domain.member.Member;
+import com.sopt.demo.dto.request.member.MemberCreateRequest;
+import com.sopt.demo.dto.request.member.MemberPatchRequest;
+import com.sopt.demo.dto.request.member.MemberPutRequest;
+import com.sopt.demo.dto.response.member.MemberGetResponse;
 import com.sopt.demo.repository.MemberJpaRepository;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.Objects;

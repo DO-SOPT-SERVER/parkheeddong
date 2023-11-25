@@ -1,8 +1,7 @@
 package com.sopt.demo.repository;
 
-import com.sopt.demo.domain.Member;
+import com.sopt.demo.domain.member.Member;
 import com.sopt.demo.exception.MemberNotExistException;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MemberJpaRepository extends JpaRepository<Member, Long> {
