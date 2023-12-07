@@ -3,6 +3,7 @@ package com.sopt.demo.domain.post;
 import com.sopt.demo.domain.BaseTimeEntity;
 import com.sopt.demo.domain.category.CategoryId;
 import com.sopt.demo.domain.member.Member;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -23,35 +24,44 @@ import lombok.NoArgsConstructor;
 @Table(name = "post")
 public class Post extends BaseTimeEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long postId;
 
     private String title;
-    @Column(columnDefinition = "TEXT")
     private String content;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    private String imageUrl;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "member_id")
     private Member member;
 
     @Column(name = "category_id")
     private CategoryId categoryId;
-    // @ManyToOne 사용 없이, 논리적으로 관계만 맺음
 
     @Builder
-    public Post(String title, String content, Member member, CategoryId categoryId) {
+    public Post(String title, String content, Member member) {
         this.title = title;
         this.content = content;
         this.member = member;
-        this.categoryId = categoryId;
+    }
+
+    @Builder(builderMethodName = "builderWithImageUrl")
+    public Post(String title, String content, String imageUrl, Member member) {
+        this.title = title;
+        this.content = content;
+        this.imageUrl = imageUrl;
+        this.member = member;
     }
 
     public void updateContent(String content) {
         this.content = content;
     }
-}
 
+    public void addCategory(CategoryId categoryId) {
+        this.categoryId = categoryId;
+    }
+}
 /* 게시글을 의미하는 Entity. ( 연관관계의 주인은 외래키를 가지고 있는 Post 이다 )
  @Table(name = "post")
  - 엔티티 클래스가 post 테이블과 맵핑되도록 지정
