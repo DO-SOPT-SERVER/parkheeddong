@@ -5,6 +5,7 @@ import com.sopt.demo.dto.request.post.PostUpdateRequest;
 import com.sopt.demo.dto.response.post.PostGetResponse;
 import com.sopt.demo.service.PostService;
 import java.net.URI;
+import java.security.Principal;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -26,11 +27,21 @@ public class PostController {
     private final PostService postService;
 
     @PostMapping
-    public ResponseEntity<Void> createPost(@RequestHeader(CUSTOM_AUTH_ID) Long memberId,
-                                           @RequestBody PostCreateRequest request) {
-        URI location = URI.create("/api/post/" + postService.create(request, memberId));
+    public ResponseEntity<Void> createPost(
+            @RequestBody PostCreateRequest request,
+            Principal principal) {
+
+        Long memberId = Long.valueOf(principal.getName());
+        URI location = URI.create("/api/posts/" + postService.create(request, memberId));
+
         return ResponseEntity.created(location).build();
     }
+//    @PostMapping
+//    public ResponseEntity<Void> createPost(@RequestHeader(CUSTOM_AUTH_ID) Long memberId,
+//                                           @RequestBody PostCreateRequest request) {
+//        URI location = URI.create("/api/post/" + postService.create(request, memberId));
+//        return ResponseEntity.created(location).build();
+//    }
     /*
     [1] @RequestHeader(CUSTOM_AUTH_ID) Long memberId
     - HTTP 헤더에서 X-Auth-Id 값을 추출하여 memberId 변수에 저장한다

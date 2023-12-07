@@ -30,8 +30,7 @@ public class PostService {
                 Post.builder()
                         .member(member)
                         .title(request.title())
-                        .content(request.content())
-                        .categoryId(request.categoryId()).build());
+                        .content(request.content()).build());
         return post.getPostId().toString();
     }
 
